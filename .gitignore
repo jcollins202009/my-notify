@@ -142,3 +142,12 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
 .DS_Store
+.expo/
+.expo-shared/
+web-build/
+expo-env.d.ts
+ios/
+android/
+*.jks
+*.keystore
+*.mobileprovision
