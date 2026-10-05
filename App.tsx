@@ -13,6 +13,8 @@ import {
 export default function App() {
   const [title, setTitle] = useState('');
   const [message, setMessage] = useState('');
+  const [titleTouched, setTitleTouched] = useState(false);
+  const titleError = titleTouched && title.trim().length === 0;
 
   return (
     <KeyboardAvoidingView
@@ -48,12 +50,14 @@ export default function App() {
             <View style={styles.fieldGroup}>
               <View style={styles.labelRow}>
                 <Text style={styles.label}>TITLE</Text>
-                <Text style={styles.fieldNumber}>01</Text>
+                <Text style={styles.requiredLabel}>REQUIRED <Text style={styles.fieldNumber}>01</Text></Text>
               </View>
               <TextInput
-                accessibilityLabel="Reminder title"
+                accessibilityLabel="Reminder title, required"
+                accessibilityHint={titleError ? 'A title is required.' : 'Enter a title for your reminder.'}
                 autoCapitalize="sentences"
                 onChangeText={setTitle}
+                onBlur={() => setTitleTouched(true)}
                 placeholder="Call the dentist"
                 placeholderTextColor={colors.muted}
                 returnKeyType="next"
@@ -61,7 +65,12 @@ export default function App() {
                 style={styles.titleInput}
                 value={title}
               />
-              <View style={styles.inputRule} />
+              {titleError ? (
+                <Text accessibilityRole="alert" style={styles.errorText}>
+                  Add a title to continue.
+                </Text>
+              ) : null}
+              <View style={[styles.inputRule, titleError && styles.errorRule]} />
             </View>
 
             <View style={styles.fieldGroup}>
@@ -226,6 +235,13 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     letterSpacing: 0.5,
   },
+  requiredLabel: {
+    color: colors.coral,
+    fontFamily: 'Courier',
+    fontSize: 9,
+    fontWeight: '700',
+    letterSpacing: 0.5,
+  },
   titleInput: {
     minHeight: 49,
     paddingHorizontal: 0,
@@ -246,6 +262,14 @@ const styles = StyleSheet.create({
   inputRule: {
     height: 1,
     backgroundColor: colors.line,
+  },
+  errorRule: {
+    backgroundColor: colors.coral,
+  },
+  errorText: {
+    color: colors.coral,
+    fontSize: 12,
+    lineHeight: 17,
   },
   fieldNumber: {
     color: colors.muted,
