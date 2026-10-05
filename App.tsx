@@ -25,19 +25,21 @@ export default function App() {
         keyboardShouldPersistTaps="handled"
       >
         <View style={styles.hero}>
-          <View style={styles.brandRow}>
-            <View style={styles.brandMark}>
-              <Text style={styles.brandInitial}>m</Text>
+          <View style={styles.heroContent}>
+            <View style={styles.brandRow}>
+              <View style={styles.brandMark}>
+                <Text style={styles.brandInitial}>m</Text>
+              </View>
+              <Text style={styles.brandName}>MY NOTIFY</Text>
+              <View style={styles.headerRule} />
+              <Text style={styles.stepLabel}>REMINDER DETAILS</Text>
             </View>
-            <Text style={styles.brandName}>MY NOTIFY</Text>
-            <View style={styles.headerRule} />
-            <Text style={styles.stepLabel}>01 <Text style={styles.stepTotal}>/ 03</Text></Text>
-          </View>
 
-          <View style={styles.intro}>
-            <Text style={styles.eyebrow}>A NOTE FOR LATER</Text>
-            <Text style={styles.heading}>A little note{ '\n' }for future you.</Text>
-            <View style={styles.headingAccent} />
+            <View style={styles.intro}>
+              <Text style={styles.eyebrow}>A NOTE FOR LATER</Text>
+              <Text style={styles.heading}>A little note{ '\n' }for future you.</Text>
+              <View style={styles.headingAccent} />
+            </View>
           </View>
         </View>
 
@@ -111,16 +113,19 @@ const styles = StyleSheet.create({
   page: {
     flexGrow: 1,
     width: '100%',
-    maxWidth: 620,
-    alignSelf: 'center',
     backgroundColor: colors.background,
   },
   hero: {
     minHeight: 330,
+    backgroundColor: colors.forest,
+  },
+  heroContent: {
+    width: '100%',
+    maxWidth: 620,
+    alignSelf: 'center',
     paddingHorizontal: 28,
     paddingTop: 22,
     paddingBottom: 38,
-    backgroundColor: colors.forest,
   },
   brandRow: {
     minHeight: 40,
@@ -157,12 +162,9 @@ const styles = StyleSheet.create({
   stepLabel: {
     color: colors.acid,
     fontFamily: 'Courier',
-    fontSize: 11,
+    fontSize: 9,
     fontWeight: '700',
-  },
-  stepTotal: {
-    color: '#9AB0A8',
-    fontWeight: '400',
+    letterSpacing: 0.6,
   },
   intro: {
     marginTop: 67,
@@ -191,6 +193,9 @@ const styles = StyleSheet.create({
   },
   formArea: {
     flex: 1,
+    width: '100%',
+    maxWidth: 620,
+    alignSelf: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 28,
     paddingTop: 34,
