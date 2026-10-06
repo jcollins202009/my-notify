@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
+import { validateReminderFields } from './src/validation';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -14,7 +15,9 @@ export default function App() {
   const [title, setTitle] = useState('');
   const [message, setMessage] = useState('');
   const [titleTouched, setTitleTouched] = useState(false);
-  const titleError = titleTouched && title.trim().length === 0;
+  const titleError = titleTouched
+    ? validateReminderFields(title, message).title
+    : null;
 
   return (
     <KeyboardAvoidingView
@@ -67,7 +70,7 @@ export default function App() {
               />
               {titleError ? (
                 <Text accessibilityRole="alert" style={styles.errorText}>
-                  Add a title to continue.
+                  {titleError}
                 </Text>
               ) : null}
               <View style={[styles.inputRule, titleError && styles.errorRule]} />
